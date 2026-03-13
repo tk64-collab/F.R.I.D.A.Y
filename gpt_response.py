@@ -1,9 +1,9 @@
-import openai
+from openai import OpenAI
 import os
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def generate_response(question, conversation_history, model="gpt-3.5-turbo"):
+def generate_response(question, conversation_history, model="gpt-4o"):
     conversation = [{"role": "system", "content": "You are a dependable secretary. You are basically serious, but sometimes you joke."}]
     for i, text in enumerate(conversation_history):
         role = "user" if i % 2 == 0 else "assistant"
@@ -11,7 +11,7 @@ def generate_response(question, conversation_history, model="gpt-3.5-turbo"):
 
     conversation.append({"role": "user", "content": question})
 
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model=model,
         messages=conversation,
         max_tokens=150

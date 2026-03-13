@@ -22,7 +22,7 @@ class VoiceAssistantApp(QWidget):
         self.layout.addWidget(self.textEdit)
 
         self.modelComboBox = QComboBox(self)
-        self.modelComboBox.addItems(["gpt-3.5-turbo", "gpt-4-o"])
+        self.modelComboBox.addItems(["gpt-4o", "gpt-4o-mini"])
         self.layout.addWidget(self.modelComboBox)
 
         self.listenButton = QPushButton('Listen', self)
